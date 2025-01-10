@@ -4,6 +4,8 @@ import './App.css';
 import axios from 'axios';
 import SearchBar from './components/SearchBar';
 import ImageList from './components/ImageList';
+import ProfileCard from './components/ProfileCard';
+import EventHandling from './components/EventHandling';
 
 function App() {
   const [images, setImages]= useState([]);
@@ -19,6 +21,8 @@ function App() {
   } 
   return (
     <div className="App">
+      <ProfileCard title="Alam" handle="@tanjeem"/>
+      <EventHandling/>
       <SearchBar onSubmit={onSearchSubmit} />
       <ImageList images={images}/>
     </div>

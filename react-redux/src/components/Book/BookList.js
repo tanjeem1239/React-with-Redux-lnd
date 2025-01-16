@@ -1,15 +1,12 @@
-import React from 'react'
-import BookShow from './BookShow'
+import React from 'react';
+import BookShow from './BookShow';
 
-const BookList = ({ books, onEdit}) => {
-    const renderBooks = books.map((book) => {
-        <BookShow key={book.id} book={book} onEdit={onEdit}/>
+const BookList = ({ books, onEdit, onDelete}) => {
+    const renderBooks = books.map((book) => (
+      <BookShow key={book.id} book={book} onEdit={onEdit} onDelete={onDelete}/>
+    ));
 
-    });
+    return <div className='book-list'>{renderBooks}</div>;
+};
 
-  return (
-    <div>{renderBooks}</div>
-  )
-}
-
-export default BookList
+export default BookList;

@@ -24,7 +24,7 @@ function App() {
 
   
   const [books, setBooks] = useState([]);
-
+console.log(books);
 
   const createBook = (title) => {
     const newBook = { id: Math.random().toString(36).substr(2, 9), title };

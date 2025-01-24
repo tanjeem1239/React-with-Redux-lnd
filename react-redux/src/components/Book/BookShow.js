@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import useBooksContext from '../../hooks/use-books-context';
 
-const BookShow = ({book, onEdit, onDelete}) => {
+const BookShow = ({book}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [newTitle, setNewTitle]= useState(book.title);
+    
+    const {deleteBookById, editBook} = useBooksContext();;
 
     const handleEdit = () => {
         setIsEditing(true);
     }
 
-    const handleSave = () =>{
-        onEdit(book.id,newTitle );
+    const handleSave = async () =>{
+        await editBook( book.id, newTitle);
         setIsEditing(false);
     }
 
@@ -19,7 +22,7 @@ const BookShow = ({book, onEdit, onDelete}) => {
     }
 
     const handleDelete = () =>{
-        onDelete(book.id);
+        deleteBookById(book.id);
     }
   return (
     <div>

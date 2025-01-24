@@ -8,6 +8,8 @@ import ProfileCard from './components/ProfileCard';
 import EventHandling from './components/EventHandling';
 import BookCreate from './components/Book/BookCreate';
 import BookList from './components/Book/BookList';
+import Button from './components/Button';
+import Dropdown from './components/Dropdown';
 
 function App() {
   // const [images, setImages]= useState([]);
@@ -21,22 +23,16 @@ function App() {
   //   });
   //   setImages(response.data.results);
   // } 
+  const [ selected, setIsSelected] = useState(null);
 
-  
-  const [books, setBooks] = useState([]);
-console.log(books);
-
-  const createBook = (title) => {
-    const newBook = { id: Math.random().toString(36).substr(2, 9), title };
-    setBooks([...books, newBook]);
-  };
-
-  const editBook = (id, newTitle) => {
-    const updatedBooks = books.map((book) =>
-      book.id === id ? { ...book, title: newTitle } : book
-    );
-    setBooks(updatedBooks);
-  };
+  const handleSelect = (dropOption) => {
+    setIsSelected(dropOption)
+  }
+  const dropOptions = [
+    { label: 'Red' , value : 'red'},
+    { label: 'Green' , value : 'green'},
+    { label: 'Blue' , value : 'blue'},
+  ]
   
   return (
     <div className="App">
@@ -44,8 +40,12 @@ console.log(books);
       <EventHandling/>
       <SearchBar onSubmit={onSearchSubmit} />
       <ImageList images={images}/> */}
-      <BookCreate onCreate={createBook}/>
-      <BookList books={books} onEdit={editBook} />
+      <div className="flex">
+
+        <Dropdown dropOptions={dropOptions} handleSelect={handleSelect} selected={selected}/>
+
+      </div>
+
     </div>
   );
 }

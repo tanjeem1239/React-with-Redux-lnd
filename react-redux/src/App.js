@@ -9,7 +9,14 @@ import EventHandling from './components/EventHandling';
 import BookCreate from './components/Book/BookCreate';
 import BookList from './components/Book/BookList';
 import Button from './components/Button';
-import Dropdown from './components/Dropdown';
+import Route from './components/Route';
+import DropdownPage from './pages/DropdownPage';
+
+import Link from './components/Link';
+import Sidebar from './components/Sidebar';
+import ButtonPage from './pages/ButtonPage';
+import ModalPage from './pages/ModalPage';
+import TablePage from './pages/TablePage';
 
 function App() {
   // const [images, setImages]= useState([]);
@@ -23,16 +30,6 @@ function App() {
   //   });
   //   setImages(response.data.results);
   // } 
-  const [ selected, setIsSelected] = useState(null);
-
-  const handleSelect = (dropOption) => {
-    setIsSelected(dropOption)
-  }
-  const dropOptions = [
-    { label: 'Red' , value : 'red'},
-    { label: 'Green' , value : 'green'},
-    { label: 'Blue' , value : 'blue'},
-  ]
   
   return (
     <div className="App">
@@ -40,12 +37,24 @@ function App() {
       <EventHandling/>
       <SearchBar onSubmit={onSearchSubmit} />
       <ImageList images={images}/> */}
-      <div className="flex">
 
-        <Dropdown dropOptions={dropOptions} handleSelect={handleSelect} selected={selected}/>
 
-      </div>
 
+        <Sidebar/>
+        <div>
+          <Route path="/dropdown">
+            <DropdownPage/>
+          </Route>
+          <Route path="/button">
+            <ButtonPage/>
+          </Route>
+          <Route path="/modal">
+            <ModalPage/>
+          </Route>
+          <Route path="/table">
+            <TablePage/>
+          </Route>
+        </div>
     </div>
   );
 }
